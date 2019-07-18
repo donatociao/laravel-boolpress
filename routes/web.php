@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function() {
-  return 'homepage pubblica';
+  return view('welcome');
 
 });
 
