@@ -10,15 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function() {
-  return view('welcome');
-
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
 
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function() {
   Route::get('/', 'HomeController@index')->name('home');
   Route::resource('/posts' , 'PostController');
+  Route::get('/posts', 'PostController@index')->name('posts');
+  
 
 });
