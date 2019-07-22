@@ -7,38 +7,33 @@
       <h1 class="display-3">Crea nuovo post</h1>
     <div>
         <form method="post" action="{{ route('admin.posts.store') }}">
-            @csrf
-            <div class="form-group">
-                <label for="title">Titolo</label>
-                <input type="text" class="form-control" name="title"/>
-            </div>
-            <div class="form-group">
-                <label for="author">Autore</label>
-                <input type="text" class="form-control" name="author"/>
-            </div>
-            <div class="form-group">
-                <label for="content">Contenuto</label>
-                <textarea type="text" class="form-control" name="content" rows="8"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="category_id">Categoria</label>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"></label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelect01" name="category_id">
-                    <option selected>Scegli categoria...</option>
-                    <option value="1">Primi</option>
-                    <option value="2">Secondi</option>
-                    <option value="3">Dolci Tentazioni</option>
-                  </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crea" class="btn btn-success">
-            </div>
+          @csrf
+          <div class="form-group">
+              <label for="title">Titolo</label>
+              <input type="text" class="form-control" name="title"/>
+          </div>
+          <div class="form-group">
+            <label for="author">Autore</label>
+            <input type="text" class="form-control" name="author"/>
+          </div>
+          <div class="form-group">
+            <label for="content">Contenuto</label>
+            <textarea type="text" class="form-control" name="content" rows="8"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="category_id">Categoria</label>
+            <select class="custom-select form-control" id="inputGroupSelect01" name="category_id">
+              <option selected>Scegli categoria...</option>
+              @foreach ($categories as $category)
+              <option value="{{$category->id}}">{{$category->name}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Crea" class="btn btn-success">
+          </div>
         </form>
+      </div>
     </div>
-  </div>
   </div>
 @endsection

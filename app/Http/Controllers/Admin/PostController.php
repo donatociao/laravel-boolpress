@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -17,7 +18,8 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admin.newpost');
+      $categories = Category::all();
+        return view('admin.newpost')->with(['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -50,12 +52,14 @@ class PostController extends Controller
 
     public function edit($id)
     {
+      $categories = Category::all();
       $post_to_mod = Post::find($id);
       if (empty($post_to_mod)) {
         abort(404);
       }
       return view('admin.edit')->with([
         'post' => $post_to_mod,
+        'categories' => $categories
       ]);
     }
 

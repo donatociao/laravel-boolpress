@@ -20,20 +20,18 @@
           </div>
           <div class="form-group">
               <label for="content">Contenuto</label>
-              <textarea placeholder="{{$post->content}}" type="text" class="form-control" name="content" rows="12"></textarea>
+              <textarea type="text" class="form-control" name="content" rows="12">{{old('content', $post->content)}}</textarea>
           </div>
           <div class="form-group">
-              <label for="category_id">Categoria</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01"></label>
-                </div>
-                <select class="custom-select" id="inputGroupSelect01" name="category_id">
-                  <option selected>Scegli categoria...</option>
-                  <option value="1">Primi</option>
-                  <option value="2">Secondi</option>
-                  <option value="3">Dolci Tentazioni</option>
-                </select>
+            <label for="category_id">Categoria</label>
+            <select class="custom-select form-control" id="inputGroupSelect01" name="category_id">
+              <option selected>Scegli Categoria...</option>
+              @foreach ($categories as $category)
+                <option value="{{$category->id}}">
+                  {{$category->name}}
+                </option>
+              @endforeach
+            </select>
               </div>
           </div>
           <div class="form-group">
