@@ -12,6 +12,7 @@
 */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
+Route::get('/categories/{slug}', 'PostController@postInCategory')->name('posts.categories');
 
 Auth::routes();
 
@@ -19,6 +20,6 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
   Route::get('/', 'HomeController@index')->name('home');
   Route::resource('/posts' , 'PostController');
   Route::get('/posts', 'PostController@index')->name('posts');
-  
+
 
 });
