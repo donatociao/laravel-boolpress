@@ -20,5 +20,6 @@
 
   @endforelse
   </ul>
+  {{ $posts->links() }}
 </div>
 @endsection

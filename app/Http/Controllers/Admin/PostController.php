@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Pagination\Paginator;
 use App\Post;
 use App\Category;
 
@@ -12,7 +13,7 @@ class PostController extends Controller
 {
     public function index()
     {
-      $posts = Post::all()->sortByDesc("id");
+      $posts = Post::orderBy('id', 'DESC')->paginate(5);
       return view('admin.post')->with(['posts' => $posts]);
     }
 
